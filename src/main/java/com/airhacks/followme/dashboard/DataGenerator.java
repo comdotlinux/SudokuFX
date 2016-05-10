@@ -26,7 +26,7 @@ import javax.annotation.PostConstruct;
  *
  * @author adam-bien.com
  */
-public class Tower {
+public class DataGenerator {
 
     @PostConstruct
     public void init() {
