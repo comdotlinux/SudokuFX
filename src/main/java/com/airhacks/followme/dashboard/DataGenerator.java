@@ -19,7 +19,6 @@ package com.airhacks.followme.dashboard;
  * limitations under the License.
  * #L%
  */
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
@@ -28,7 +27,7 @@ import java.util.TreeSet;
 import javax.annotation.PostConstruct;
 
 /**
- * 
+ *
  * @author guru.a.kulkarni
  */
 public class DataGenerator {
@@ -37,26 +36,34 @@ public class DataGenerator {
     public void init() {
         System.out.println("Tower.init()");
     }
-    
+
     private static final Set<Integer> ONE_TO_NINE = new HashSet<>();
-    
+
     static {
         for (int i = 1; i < 10; i++) {
             ONE_TO_NINE.add(Integer.valueOf(i));
         }
     }
 
-    public int[][] generateSudoku() {
-        int[][] sudoku = new int[9][9];
-        for (int[] eachRow : sudoku) {
-            for (int columnValue : eachRow) {
-                columnValue = 0;
+    public int[][] generateArrayOfRandomNumbers() {
+        int[][] arr = new int[9][9];
+        for (int row = 0; row < 9; row++) {
+            while (!isValidRow(arr[row])) {
+                for (int col = 0; col < 9; col++) {
+                    final int randomNumberForBoard = getRandomNumberForBoard();
+                    arr[row][col] = randomNumberForBoard;
+                    System.out.println("generateArrayOfRandomNumbers :: row : " + row + " | col : " + col + " | value : " + randomNumberForBoard);
+                }
             }
         }
-        System.out.println("Ready to take-off");
-        return sudoku;
+
+        System.out.println("Generated matrix :: ");
+        for (int[] row : arr) {
+            System.out.println(Arrays.toString(row));
+        }
+        return arr;
     }
-    
+
     /**
      *
      * @param _3x3Box
@@ -64,20 +71,19 @@ public class DataGenerator {
      */
     public boolean isValid3x3Box(int[][] _3x3Box) {
         Set<Integer> boxSet = new TreeSet<>();
-        if(_3x3Box.length == 3) {
+        if (_3x3Box.length == 3) {
             for (int[] eachRow : _3x3Box) {
-                if(eachRow.length == 3) {
+                if (eachRow.length == 3) {
                     for (int colVal : eachRow) {
                         boxSet.add(colVal);
                     }
                 }
             }
         }
-        
+
         return boxSet.containsAll(ONE_TO_NINE);
     }
-    
-    
+
     public boolean isValidRow(int[] rowOrColumns) {
         Set<Integer> rowOrColumnValues = new HashSet<>();
         for (int rowOrColumnValue : rowOrColumns) {
@@ -85,7 +91,7 @@ public class DataGenerator {
         }
         return rowOrColumnValues.containsAll(ONE_TO_NINE);
     }
-    
+
     public static int getRandomNumberForBoard() {
         return new Random().nextInt(9) + 1;
     }

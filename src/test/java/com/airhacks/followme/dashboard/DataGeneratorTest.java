@@ -9,8 +9,8 @@ package com.airhacks.followme.dashboard;
 import org.junit.Before;
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -35,18 +35,16 @@ public class DataGeneratorTest {
 //        fail("The test case is a prototype.");
 //    }
 
-//    /**
-//     * Test of generateSudoku method, of class DataGenerator.
-//     */
-//    @Test
-//    public void testGenerateSudoku() {
-//        System.out.println("generateSudoku");
-//        
-//        int[][] expResult = null;
-//        int[][] result = instance.generateSudoku();
-//        assertArrayEquals(expResult, result);
-//        fail("The test case is a prototype.");
-//    }
+    /**
+     * Test of generateSudoku method, of class DataGenerator.
+     */
+    @Test
+    public void testGenerateArrayOfRandomNumbers() {
+        System.out.println("testGenerateArrayOfRandomNumbers");
+        
+        int[][] result = cut.generateArrayOfRandomNumbers();
+        assertNotNull(result);
+    }
 
     /**
      * Test of isValid3x3Box method, of class DataGenerator.
