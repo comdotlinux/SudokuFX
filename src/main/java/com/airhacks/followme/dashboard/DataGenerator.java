@@ -20,11 +20,14 @@ package com.airhacks.followme.dashboard;
  * #L%
  */
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 import javax.annotation.PostConstruct;
 
 /**
- *
- * @author adam-bien.com
+ * 
+ * @author guru.a.kulkarni
  */
 public class DataGenerator {
 
@@ -32,9 +35,43 @@ public class DataGenerator {
     public void init() {
         System.out.println("Tower.init()");
     }
+    
+    private static final Set<Integer> ONE_TO_NINE = new HashSet<>();
+    
+    static {
+        for (int i = 1; i < 10; i++) {
+            ONE_TO_NINE.add(Integer.valueOf(i));
+        }
+    }
 
-    public String readyToTakeoff() {
+    public int[][] generateSudoku() {
+        int[][] sudoku = new int[9][9];
+        for (int[] eachRow : sudoku) {
+            for (int columnValue : eachRow) {
+                columnValue = 0;
+            }
+        }
         System.out.println("Ready to take-off");
-        return "ok from tower";
+        return sudoku;
+    }
+    
+    /**
+     *
+     * @param _3x3Box
+     * @return
+     */
+    public boolean isValid3x3Box(int[][] _3x3Box) {
+        Set<Integer> boxSet = new TreeSet<>();
+        if(_3x3Box.length == 3) {
+            for (int[] eachRow : _3x3Box) {
+                if(eachRow.length == 3) {
+                    for (int colVal : eachRow) {
+                        boxSet.add(colVal);
+                    }
+                }
+            }
+        }
+        
+        return boxSet.containsAll(ONE_TO_NINE);
     }
 }

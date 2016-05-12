@@ -51,7 +51,7 @@ public class DashboardPresenter implements Initializable {
     }
 
     public void launch() {
-        message.setText("Date: " + date + " -> " + prefix + tower.readyToTakeoff() + happyEnding + theVeryEnd
+        message.setText("Date: " + date + " -> " + prefix + happyEnding + theVeryEnd
         );
     }
 
