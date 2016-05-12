@@ -20,6 +20,7 @@ package com.airhacks.followme.dashboard;
  * #L%
  */
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
@@ -73,5 +74,14 @@ public class DataGenerator {
         }
         
         return boxSet.containsAll(ONE_TO_NINE);
+    }
+    
+    
+    public boolean isValidRow(int[] rowOrColumns) {
+        Set<Integer> rowOrColumnValues = new HashSet<>();
+        for (int rowOrColumnValue : rowOrColumns) {
+            rowOrColumnValues.add(rowOrColumnValue);
+        }
+        return rowOrColumnValues.containsAll(ONE_TO_NINE);
     }
 }
