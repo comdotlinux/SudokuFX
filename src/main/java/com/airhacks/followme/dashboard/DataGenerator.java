@@ -22,6 +22,7 @@ package com.airhacks.followme.dashboard;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 import javax.annotation.PostConstruct;
@@ -83,5 +84,9 @@ public class DataGenerator {
             rowOrColumnValues.add(rowOrColumnValue);
         }
         return rowOrColumnValues.containsAll(ONE_TO_NINE);
+    }
+    
+    public static int getRandomNumberForBoard() {
+        return new Random().nextInt(9) + 1;
     }
 }
