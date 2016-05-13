@@ -39,7 +39,7 @@ public class DataGeneratorTest {
     /**
      * Test of generateSudoku method, of class DataGenerator.
      */
-    @Test
+    @Test(timeout = 20000L)
     public void testGenerateArrayOfRandomNumbers() {
         System.out.println("testGenerateArrayOfRandomNumbers");
         

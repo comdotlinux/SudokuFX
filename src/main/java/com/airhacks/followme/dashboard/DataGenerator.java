@@ -47,12 +47,19 @@ public class DataGenerator {
 
     public int[][] generateArrayOfRandomNumbers() {
         int[][] arr = new int[9][9];
-        for (int row = 0; row < 9; row++) {
-            while (!isValidRow(arr[row])) {
-                for (int col = 0; col < 9; col++) {
-                    final int randomNumberForBoard = getRandomNumberForBoard();
-                    arr[row][col] = randomNumberForBoard;
-//                    System.out.println("generateArrayOfRandomNumbers :: row : " + row + " | col : " + col + " | value : " + randomNumberForBoard);
+        for(int columnToCheck = 0; columnToCheck < 9; columnToCheck++) {
+            while(!isValidColumn(arr, columnToCheck) && !isValidRow(arr[columnToCheck])) {
+                for (int row = 0; row < 9; row++) {
+                    for (int col = 0; col < 9; col++) {
+                        final int randomNumberForBoard = getRandomNumberForBoard();
+                        arr[row][col] = randomNumberForBoard;
+                        // System.out.println("generateArrayOfRandomNumbers :: row : " + row + " | col : " + col + " | value : " + randomNumberForBoard);
+                    }
+        //                System.out.println("isValidRow? " + Arrays.toString(arr[row]));
+                }
+                System.out.println("Generated matrix Before column check :: ");
+                for (int[] row : arr) {
+                    System.out.println(Arrays.toString(row));
                 }
             }
         }
@@ -90,7 +97,7 @@ public class DataGenerator {
             column.add(input[i][columnToCheck]);
         }
         
-        System.out.println("isValidColumn() :: " + column.toString());
+//        System.out.println("isValidColumn() :: " + column.toString());
         return column.containsAll(ONE_TO_NINE);
     }
     
