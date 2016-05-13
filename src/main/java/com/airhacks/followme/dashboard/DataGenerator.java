@@ -52,7 +52,7 @@ public class DataGenerator {
                 for (int col = 0; col < 9; col++) {
                     final int randomNumberForBoard = getRandomNumberForBoard();
                     arr[row][col] = randomNumberForBoard;
-                    System.out.println("generateArrayOfRandomNumbers :: row : " + row + " | col : " + col + " | value : " + randomNumberForBoard);
+//                    System.out.println("generateArrayOfRandomNumbers :: row : " + row + " | col : " + col + " | value : " + randomNumberForBoard);
                 }
             }
         }
@@ -84,6 +84,16 @@ public class DataGenerator {
         return boxSet.containsAll(ONE_TO_NINE);
     }
 
+    public boolean isValidColumn(int[][] input, int columnToCheck) {
+        Set<Integer> column = new HashSet<>();
+        for (int i = 0; i < input.length; i++) {
+            column.add(input[i][columnToCheck]);
+        }
+        
+        System.out.println("isValidColumn() :: " + column.toString());
+        return column.containsAll(ONE_TO_NINE);
+    }
+    
     public boolean isValidRow(int[] rowOrColumns) {
         Set<Integer> rowOrColumnValues = new HashSet<>();
         for (int rowOrColumnValue : rowOrColumns) {

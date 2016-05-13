@@ -6,6 +6,7 @@
 
 package com.airhacks.followme.dashboard;
 
+import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -42,9 +43,29 @@ public class DataGeneratorTest {
     public void testGenerateArrayOfRandomNumbers() {
         System.out.println("testGenerateArrayOfRandomNumbers");
         
+        long start = System.nanoTime();
         int[][] result = cut.generateArrayOfRandomNumbers();
+        long end = System.nanoTime();
+        
+        System.out.println("GenerateArrayOfRandomNumbers() took :: " + TimeUnit.NANOSECONDS.toMillis(end-start));
         assertNotNull(result);
     }
+    
+    /**
+     * Test of generateSudoku method, of class DataGenerator.
+     */
+    @Test
+    public void testisValidColumn() {
+        System.out.println("testGenerateArrayOfRandomNumbers");
+        
+        int[][] input = cut.generateArrayOfRandomNumbers();
+        assertNotNull(input);
+        boolean result = cut.isValidColumn(input, 0);
+        System.out.println("testisValidColumn() ? " + result);
+        
+    }
+    
+    
 
     /**
      * Test of isValid3x3Box method, of class DataGenerator.
