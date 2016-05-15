@@ -1,4 +1,4 @@
 # SudokuFX
 A Simple Sudoku Game written in JavaFX
 
-This is based upon ignier.fx from Adam-bien
+This is based upon https://github.com/AdamBien/afterburner.fx
