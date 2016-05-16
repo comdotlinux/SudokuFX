@@ -6,6 +6,8 @@
 
 package com.airhacks.followme.dashboard;
 
+import java.util.Arrays;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
@@ -119,6 +121,21 @@ public class DataGeneratorTest {
         boolean expected = false;
         boolean actual = cut.isValid3x3Box(_3x3Box);
         assertThat(actual, is(expected));
+    }
+    
+    @Test(timeout = 5000L)
+    public void test(){
+    int[][] arr = new int[9][9];
+    final Random r = new Random();
+        for (int[] arr1 : arr) {
+            for (int c = 0; c < arr1.length; c++) {
+                arr1[c] = r.nextInt(9) + 1;
+            }
+        }
+        System.out.println("Generated matrix Before column check :: ");
+                for (int[] row : arr) {
+                    System.out.println(Arrays.toString(row));
+                }
     }
 
 }
