@@ -132,11 +132,59 @@ public class SudokuField {
             r = (r / blockSize) * (blockSize + 1);
         }
         
+        if(c % blockSize == 0) {
+            c -= blockSize - 1;
+        } else {
+            c = (c / blockSize) * (blockSize + 1);
+        }
         
+         for (int i = r; i < r + blockSize; i++) {
+            for (int j = c; j < c + blockSize; j++) {
+                if (field[i - 1][j - 1].isFilled() && (field[i - 1][j - 1].get() == number)) {
+                    return false;
+                }
+            }
+        }
         
         return true;
     }
     
+    public boolean checkNumberRow(final int row, final int number) {
+        for (int i = 0; i < fieldSize; i++) {
+            SudokuCell cell = field[row - 1][i];
+            if(cell.isFilled() && cell.get() == number) {
+                return false;
+            }
+        }
+        return true;
+    }
     
+    public boolean checkNumberColumn(final int column, final int number) {
+        for (int i = 0; i < fieldSize; i++) {
+            SudokuCell cell = field[i][column - 1];
+            if(cell.isFilled() && cell.get() == number) {
+                return false;
+            }
+        }
+        return true;
+    }
     
+    public boolean checkNumberField(final int row, final int column, final int number) {
+        return checkNumberBox(row, column, number) && checkNumberRow(row, number) && checkNumberColumn(column, number);
+    }
+    
+    public int numberOfPossibleVariants(final int row, final int column) {
+        int result = 0;
+        
+        for (int i = 0; i < fieldSize; i++) {
+            if(checkNumberField(row, column, i)) {
+                result++;
+            }
+        }
+        return result;
+    }
+    
+    public boolean isCorrect() {
+        return false;
+    }
 }
