@@ -185,6 +185,22 @@ public class SudokuField {
     }
     
     public boolean isCorrect() {
-        return false;
+        for (int i = 0; i < fieldSize; i++) {
+            for (int j = 0; j < fieldSize; j++) {
+                SudokuCell cell = field[i][j];
+                if(cell.isFilled()) {
+                    int value = cell.get();
+                    cell.hide();
+                    boolean correct = checkNumberField(i, j, value);
+                    cell.show();
+                    if(!correct) {
+                        return correct;
+                    }
+                }
+            }
+        }
+        return true;
     }
+    
+    
 }
